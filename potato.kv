@@ -36,45 +36,4 @@ ScreenManager:
             Widget:
         Widget:    
 
-<Player>:
-    name: 'player'
-    BoxLayout:
-        orientation: 'vertical'
 
-        Button: 
-            text: '<'
-            on_press: 
-                root.manager.current = 'home'
-
-
-<Add_Music>:
-    name: 'add_music'
-    
-    BoxLayout:
-        orientation: 'vertical'
-        BoxLayout:
-            orientation: 'horizontal'
-            height : 10
-            Button:
-                text: '<'
-                size_hint_y: 0.1
-                on_press:
-                    root.manager.current = 'home'
-            Label:
-                text: ' Add_Music'
-                halign: 'center'
-                size_hint_y: 0.1
-        Widget:
-        BoxLayout:
-            orientation: 'horizontal'
-            Label:
-                size_hint_x : 0.3
-                text: ' song url '
-
-            TextInput:
-                id: 'url'
-                hint_text: 'url'
-                size_hint_x: 0.7
-                multiline: False
-        Widget:
-        Widget:

@@ -1,0 +1,43 @@
+
+<Add_Music>:
+    name: 'add_music'
+    
+    BoxLayout:
+        orientation: 'vertical'
+
+        BoxLayout:
+
+            orientation: 'horizontal'
+            size_hint_y : 0.2
+            Button:
+                text: '<'
+                size_hint_y: 0.2
+                size_hint_x: 0.1
+                on_press:
+                    root.manager.current = 'home'
+            Label:
+                text: ' Add_Music'
+                halign: 'center'
+                size_hint_y: 0.2
+                size_hint_x: 0.9
+        Widget:
+        BoxLayout:
+            orientation: 'horizontal'
+            padding: 10
+            Label:
+                size_hint_x : 0.3
+                text: ' song url '
+
+            TextInput:
+                id: 'url'
+                hint_text: 'url'
+                size_hint_x: 0.7
+                multiline: False
+        Button:
+            text: 'download'
+            halign: 'center'
+            size_hint_x : 0.5
+            size_hint_y : 0.3
+            pos_hint: {'center_x': 0.5}
+        Widget:
+        Widget: 
