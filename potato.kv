@@ -1,0 +1,80 @@
+ScreenManager:
+    Home:
+    Player:
+    Add_Music:
+
+<Home>:
+    name: 'home'
+    BoxLayout:
+        orientation: 'vertical'
+
+        Label: 
+            text: 'POTATO'
+            halign: 'center'
+            height: '50'
+
+        Widget:
+
+        BoxLayout:
+            orientation: 'horizontal'
+            height: 50
+
+            Widget:
+
+            Button:
+                text: 'add_music'
+                width: 120
+                on_press: 
+                    root.manager.current = 'add_music'
+
+            Button:
+                text: 'player'
+                width: 120
+                on_press:
+                    root.manager.current = 'player'
+        
+            Widget:
+        Widget:    
+
+<Player>:
+    name: 'player'
+    BoxLayout:
+        orientation: 'vertical'
+
+        Button: 
+            text: '<'
+            on_press: 
+                root.manager.current = 'home'
+
+
+<Add_Music>:
+    name: 'add_music'
+    
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            orientation: 'horizontal'
+            height : 10
+            Button:
+                text: '<'
+                size_hint_y: 0.1
+                on_press:
+                    root.manager.current = 'home'
+            Label:
+                text: ' Add_Music'
+                halign: 'center'
+                size_hint_y: 0.1
+        Widget:
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                size_hint_x : 0.3
+                text: ' song url '
+
+            TextInput:
+                id: 'url'
+                hint_text: 'url'
+                size_hint_x: 0.7
+                multiline: False
+        Widget:
+        Widget:
