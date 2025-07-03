@@ -29,15 +29,23 @@
                 text: ' song url '
 
             TextInput:
-                id: 'url'
+                id: url
                 hint_text: 'url'
                 size_hint_x: 0.7
                 multiline: False
+                size_hint_y: 0.3
         Button:
             text: 'download'
             halign: 'center'
             size_hint_x : 0.5
             size_hint_y : 0.3
             pos_hint: {'center_x': 0.5}
+            on_press:   root.download()
+
         Widget:
         Widget: 
+        Label:
+            id: status
+            text:''
+            halign:'center'
+            
