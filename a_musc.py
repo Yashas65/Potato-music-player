@@ -24,27 +24,29 @@ class Add_Music(Screen):
             return
         else:
             self.ids.status.text = "Downloading"
-            Thread(target=self.downloading , args=(url,) , daemon=True).start()
+            Thread(target=self.download , args=(url,) , daemon=True).start()
             
         
         
-    def downloading(self , url):
-        path=os.path.join(os.getcwd(), 'songs')
-   
+        path = os.path.join(os.getcwd(), 'songs')
+        os.makedirs(path, exist_ok=True)  # Ensure the directory exists
         ydl_opts = {
             'format': 'bestaudio[ext=m4a]/bestaudio',
-            'outmpl': os.path.join(path , '%(title)s.%(ext)s'),
+            'outtmpl': os.path.join(path , '%(title)s.%(ext)s'),
             'quiet': True
             
         }
-        #status updation is not working for now
+
         try:
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                ydl.download([url])
-            Clock.schedule_once(lambda dt: self.ids.status.text = "Download complete")
-
+                ydl.download(url)
+            def set_status_complete(dt):
+                self.ids.status.text = "Download complete"
+            Clock.schedule_once(set_status_complete)
         except Exception as e:
-            Clock.schedule_once(lambda dt: self.update_status(f" error {str(e)}"))
-
+            def set_status_error(dt):
+                self.ids.status.text = "error"
+            Clock.schedule_once(set_status_error)
+            print(e)
 
     
