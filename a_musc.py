@@ -24,22 +24,33 @@ class Add_Music(Screen):
             return
         else:
             self.ids.status.text = "Downloading"
-            Thread(target=self.download , args=(url,) , daemon=True).start()
+            Thread(target=self.downloading , args=(url,) , daemon=True).start()
             
         
         
-        path = os.path.join(os.getcwd(), 'songs')
-        os.makedirs(path, exist_ok=True)  # Ensure the directory exists
-        ydl_opts = {
-            'format': 'bestaudio[ext=m4a]/bestaudio',
-            'outtmpl': os.path.join(path , '%(title)s.%(ext)s'),
-            'quiet': True
-            
-        }
+    def downloading(self , url):
+        
+        try:    
+           
 
-        try:
+            path = os.path.join(os.getcwd(), 'songs')
+            os.makedirs(path, exist_ok=True)
+            f_path = os.path.join(path, '%(title)s.mp3')
+
+            class MyLogger:
+               def debug(self, msg): print("[DEBUG]", msg)
+               def warning(self, msg): print("[WARNING]", msg)
+               def error(self, msg): print("[ERROR]", msg)
+
+            ydl_opts = {
+                'format': 'bestaudio[ext=m4a]/bestaudio',
+                'outtmpl': f_path,
+                'quiet': True,
+                'logger': MyLogger()  # ? correct
+            }
+            
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                ydl.download(url)
+                ydl.download([url])
             def set_status_complete(dt):
                 self.ids.status.text = "Download complete"
             Clock.schedule_once(set_status_complete)
