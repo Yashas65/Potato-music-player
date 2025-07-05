@@ -4,19 +4,20 @@ from kivy.lang import Builder
 from kivy.uix.button import Button
 from a_musc import Add_Music
 from player import Player
+from player import Play
 
 Builder.load_file('a_musc.kv')
 Builder.load_file('player.kv')
-    
+Builder.load_file('play.kv')
 class Home(Screen):
     pass
 
 
 class Potato(App):
     def build(self):
-        s = ScreenManager()
-        s.add_widget(Player(name='player'))
-        s.add_widget(Add_Music(name='add_music'))
-        pass
+        sm = ScreenManager()
+        sm.add_widget(Home(name='home'))
+        sm.add_widget(Player(name='player'))
+        sm.add_widget(Play(name='controls'))
 
 Potato().run()

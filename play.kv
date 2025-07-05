@@ -1,0 +1,32 @@
+<Play>
+    name: 'controls'
+    BoxLayout:
+        orientation:'vertical'
+
+        BoxLayout:
+            orientation:'horizontal'
+
+            Button:
+                text:'<'
+                on_press:
+                    root.manager.current = 'player'
+                size_hint_x: 0.3
+                size_hint_y: None
+                height: 30
+            Label:
+                text:'CONTROLS'
+                size_hint_x: 0.7
+                size_hint_y: None
+                height: 30
+        
+        BoxLayout:
+            orientation:'horizontal'
+
+            Button:
+                text:'<'
+
+            Button:
+                text:'pause/play'
+            
+            Button:
+                text:'>'

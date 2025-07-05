@@ -35,7 +35,12 @@
                     spacing: 5
                     padding: 5
 
-        BoxLayout:
-            orientation: 'vertical'
-            size_hint_x: 0.9
-            size_hint_y: 0.3
+    Button:
+        text:'|>'
+        size_hint_x:None
+        size_hint_y : None
+
+        height: 30
+        width : 30
+        on_press:
+            root.root.manager.current = 'controls'
