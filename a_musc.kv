@@ -11,7 +11,8 @@
             size_hint_y : 0.2
             Button:
                 text: '<'
-                size_hint_y: 0.2
+                size_hint_y: None
+                height : 50
                 size_hint_x: 0.1
                 on_press:
                     root.manager.current = 'home'
@@ -27,6 +28,7 @@
             Label:
                 size_hint_x : 0.3
                 text: ' song url '
+                size_hint_y:0.3
 
             TextInput:
                 id: url

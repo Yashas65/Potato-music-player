@@ -3,7 +3,39 @@
     BoxLayout:
         orientation: 'vertical'
 
-        Button: 
-            text: '<'
-            on_press: 
-                root.manager.current = 'home'
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: 10
+            Button:
+                text: '<'
+                size_hint_y: 0.3
+                size_hint_x: 0.3
+                on_press: 
+                    root.manager.current = 'home'    
+            Label:
+                text: 'songs'
+                size_hint_y : 0.2
+                size_hint_x: 0.7
+
+        Widget:
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: 0.7
+            size_hint_x: 0.9
+            padding: 10
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                GridLayout:
+                    id: choose_songs
+                    cols: 1
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: 5
+                    padding: 5
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_x: 0.9
+            size_hint_y: 0.3

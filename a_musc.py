@@ -5,18 +5,11 @@ from pathlib import Path
 from kivy.clock import Clock
 from threading import Thread
 
-"""
-                ERRORS
-            STATUS UPDATION AFTER DOWNLOAD
-                AND PROBABLY THAT IS NOT DOWNLOADING THE FILE
-                
-"""
-
-
 
 
 class Add_Music(Screen):
     def download(self):
+
         url = self.ids.url.text
 
         if not url:
@@ -37,6 +30,7 @@ class Add_Music(Screen):
             os.makedirs(path, exist_ok=True)
             f_path = os.path.join(path, '%(title)s.mp3')
 
+            
             class MyLogger:
                def debug(self, msg): print("[DEBUG]", msg)
                def warning(self, msg): print("[WARNING]", msg)
@@ -46,7 +40,7 @@ class Add_Music(Screen):
                 'format': 'bestaudio[ext=m4a]/bestaudio',
                 'outtmpl': f_path,
                 'quiet': True,
-                'logger': MyLogger()  # ? correct
+                'logger': MyLogger()
             }
             
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -54,6 +48,7 @@ class Add_Music(Screen):
             def set_status_complete(dt):
                 self.ids.status.text = "Download complete"
             Clock.schedule_once(set_status_complete)
+        
         except Exception as e:
             def set_status_error(dt):
                 self.ids.status.text = "error"
