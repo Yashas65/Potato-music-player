@@ -1,22 +1,26 @@
 <Player>:
     name: 'player'
     BoxLayout:
+        padding : 20
         orientation: 'vertical'
-
         BoxLayout:
             orientation: 'horizontal'
             size_hint_y: None
             height: 10
             Button:
                 text: '<'
-                size_hint_y: 0.3
+                size_hint_y: None
                 size_hint_x: 0.3
+
+                height: 50
                 on_press: 
                     root.manager.current = 'home'    
             Label:
                 text: 'songs'
-                size_hint_y : 0.2
+                size_hint_y : None
                 size_hint_x: 0.7
+
+                height : 50
 
         Widget:
         BoxLayout:
@@ -37,10 +41,10 @@
 
     Button:
         text:'|>'
-        size_hint_x:None
+        size_hint_x: 0.9
         size_hint_y : None
 
-        height: 30
-        width : 30
+        height: 50
+        
         on_press:
-            root.root.manager.current = 'controls'
+            root.manager.current = 'play'

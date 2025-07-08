@@ -1,8 +1,8 @@
 <Play>
-    name: 'controls'
+    name: 'play'
     BoxLayout:
         orientation:'vertical'
-
+        padding: 10
         BoxLayout:
             orientation:'horizontal'
 
@@ -19,14 +19,24 @@
                 size_hint_y: None
                 height: 30
         
+        Widget:
         BoxLayout:
             orientation:'horizontal'
 
             Button:
                 text:'<'
+            BoxLayout:
+                orientation:'vertical'
 
-            Button:
-                text:'pause/play'
-            
+                Button:
+                    text:'||'
+                    on_press:
+                        root.pause()
+                Button:
+                    text:'|>'
+                    on_press:
+                        root.play()
             Button:
                 text:'>'
+
+        Widget:
