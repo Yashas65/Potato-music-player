@@ -32,12 +32,17 @@ class Add_Music(Screen):
 
             
             class MyLogger:
-               def debug(self, msg): print("[DEBUG]", msg)
-               def warning(self, msg): print("[WARNING]", msg)
-               def error(self, msg): print("[ERROR]", msg)
+               def debug(self, msg): 
+                   print("[DEBUG]", msg)
+               
+               def warning(self, msg): 
+                   print("[WARNING]", msg)
+               
+               def error(self, msg): 
+                   print("[ERROR]", msg)
 
             ydl_opts = {
-                'format': 'bestaudio[ext=m4a]/bestaudio',
+                'format': 'bestaudio[ext=mp3]/bestaudio',
                 'outtmpl': f_path,
                 'quiet': True,
                 'logger': MyLogger()

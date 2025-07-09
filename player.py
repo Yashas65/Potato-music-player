@@ -12,24 +12,19 @@ class Player(Screen):
     def on_enter(self):
         self.choose_music()
     def choose_music(self):
-        c = self.ids.choose_songs
-        c.clear_widgets()
+        scrollable_frame = self.ids.choose_songs
+        scrollable_frame.clear_widgets()
         folder = Path("songs/")
-        
-        def play(name):
-            path = folder
-            play.load(path)
-            ScreenManager.current_screen = 'play'
-            Play.play(path)
         
         for song in folder.iterdir():
             if song.is_file():
-                song_path = str(song)
+                
+                sang = str(song)#sang basically means song , i was not able to think of anyother name for variable
                 btn = Button(
                     text=song.name,
                     size_hint_y=None,
                     height=20,
-                    on_press=lambda x : play(song.name)
+                    on_press=lambda x , y=sang: Play.load(y)
                 )
-                c.add_widget(btn)
+                scrollable_frame.add_widget(btn)
 

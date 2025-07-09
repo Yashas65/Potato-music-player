@@ -4,13 +4,13 @@ import pygame
 class Play(Screen):
 
 
-    def load(self, song_path):
-        self.current_song = song_path
-        pygame.mixer.music.load(song_path)
+
+    def load(self):#load and play
+        pygame.mixer.music.load(self)
+        pygame.mixer.music.play()
 
     def play(self):
-        if self.current_song:
-            pygame.mixer.music.play()
+        pygame.mixer.music.play()
 
     def pause(self):
         pygame.mixer.music.pause()
