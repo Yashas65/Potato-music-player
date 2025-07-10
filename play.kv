@@ -20,6 +20,13 @@
                 height: 30
         
         Widget:
+        Label:
+            text:''
+            id : 'sttus'
+            halign : 'center'
+            size_hint_y: None
+            height : 50
+        Widget:
         BoxLayout:
             orientation:'horizontal'
 
@@ -39,4 +46,16 @@
             Button:
                 text:'>'
 
+
+        BoxLayout:
+            orientation:'horizontal'
+            padding: 70
+            Button:
+                text:'+'
+                on_press:
+                    root.in_vol()
+            Button:
+                text:'-'
+                on_press:
+                    root.dec_vol()
         Widget:
