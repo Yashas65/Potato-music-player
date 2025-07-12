@@ -17,9 +17,12 @@ class Play(Screen):
         music.set_volume(1.0)
         music.play()
 
+    def restart(self):
+        music.play()
+        
     def play(self):
         try:
-            music.play()
+            music.unpause()
             updt_status(self ,'|>')
         except Exception as e:
             updt_status(self , e)
@@ -30,14 +33,6 @@ class Play(Screen):
 
 
 
-    def in_vol(self):
-        self.volume = min(1.0, self.volume+0.1)
-        music.setvolume(self.volume)
-        updt_status(self , '+')
-
-    def dec_vol(self):
-        self.volume = max(0.0, self.volume-0.1)
-        music.setvolume(self.volume)
-        updt_status(self , '-')
-
-     
+    def ctrl_vol(self , slider , value):
+        volume = float(value)/100
+        music.set_volume(volume)

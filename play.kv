@@ -7,7 +7,7 @@
             orientation:'horizontal'
 
             Button:
-                text:'<'
+                text: '<'
                 on_press:
                     root.manager.current = 'player'
                 size_hint_x: 0.3
@@ -31,7 +31,9 @@
             orientation:'horizontal'
 
             Button:
-                text:'<'
+                text: 'restart'
+                on_press:
+                    root.restart()
             BoxLayout:
                 orientation:'vertical'
 
@@ -46,16 +48,12 @@
             Button:
                 text:'>'
 
-
         BoxLayout:
-            orientation:'horizontal'
-            padding: 70
-            Button:
-                text:'+'
-                on_press:
-                    root.in_vol()
-            Button:
-                text:'-'
-                on_press:
-                    root.dec_vol()
+            orientation : 'vertical'
+            Slider:
+                min : 0
+                max : 100
+                value : 50
+                steps: 5
+                on_value : root.ctrl_vol(self, self.value)
         Widget:
