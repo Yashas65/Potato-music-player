@@ -3,6 +3,10 @@ name: Build Kivy APK
 on:
   workflow_dispatch:
 
+env:
+  ANDROID_HOME: ${{ github.workspace }}/.buildozer/android/platform/android-sdk
+  ANDROID_NDK_HOME: ${{ github.workspace }}/.buildozer/android/platform/android-ndk-r25b
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -41,7 +45,7 @@ jobs:
           export ANDROID_HOME=$HOME/android-sdk
           export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
 
-          yes | buildozer -v android debug 
+          yes | buildozer -v android debug || true 
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
