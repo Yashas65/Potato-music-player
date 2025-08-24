@@ -37,7 +37,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3==3.10,kivy,pygame==2.1.0,yt_dlp
+requirements = python3,kivy,pygame==2.1.0,yt_dlp
 p4a.branch=develop 
 
 # (str) Custom source folders for requirements
