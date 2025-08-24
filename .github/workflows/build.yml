@@ -1,54 +1,40 @@
 name: Build Kivy APK
 
 on:
-  workflow_dispatch:
-
-env:
-  ANDROID_HOME: ${{ github.workspace }}/.buildozer/android/platform/android-sdk
-  ANDROID_NDK_HOME: ${{ github.workspace }}/.buildozer/android/platform/android-ndk-r25b
+  workflow_dispatch:   # lets you trigger manually
+  push:                # optional: build on every push
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: Install dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y python3-pip python3-setuptools git zip openjdk-17-jdk unzip wget
+          sudo apt update
+          sudo apt install -y build-essential git zip unzip openjdk-17-jdk python3-pip
           pip install --upgrade pip
-          pip install buildozer Cython
+          pip install buildozer cython
 
-      - name: Install Android SDK / NDK
+      - name: Accept Android SDK licenses
         run: |
-          wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O cmdline-tools.zip
-          unzip cmdline-tools.zip -d $HOME/
-          mkdir -p $HOME/android-sdk/cmdline-tools
-          mv $HOME/cmdline-tools $HOME/android-sdk/cmdline-tools/latest
-
-          export ANDROID_HOME=$HOME/android-sdk
-          export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
-
-          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --sdk_root=${ANDROID_HOME} \
-            "platform-tools" "platforms;android-34" "build-tools;34.0.0" "ndk;25.2.9519653"
+          yes | $HOME/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
       - name: Build APK
-        run: |
-          export ANDROID_HOME=$HOME/android-sdk
-          export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
-
-          yes | buildozer -v android debug || true 
+        run: buildozer -v android debug --log-level=2
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: kivy-apk
+          name: Potato-APK
           path: bin/*.apk
