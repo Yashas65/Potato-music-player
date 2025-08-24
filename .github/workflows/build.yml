@@ -26,15 +26,15 @@ jobs:
           pip install --upgrade pip
           pip install buildozer cython
       
-      - name: second Install system dependencies
-  run: |
-    sudo apt-get update
-    sudo apt-get install -y \
-      autoconf \
-      automake \
-      libtool \
-      pkg-config \
-      libltdl-dev
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            autoconf \
+            automake \
+            libtool \
+            pkg-config \
+            libltdl-dev
 
       - name: Accept Android SDK licenses
         run: |
@@ -45,6 +45,7 @@ jobs:
 
       - name: List build output
         run: ls -R .
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
