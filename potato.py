@@ -1,4 +1,4 @@
-from kivy.app import App
+"""from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager , Screen
 from kivy.lang import Builder
 from kivy.uix.button import Button
@@ -25,4 +25,4 @@ class Potato(App):
         sm.add_widget(Player(name='player'))
         sm.add_widget(Play(name='play'))
         return sm
-Potato().run()
+Potato().run()"""
