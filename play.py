@@ -1,4 +1,4 @@
-"""
+
 from kivy.uix.screenmanager import Screen
 import time
 from pygame.mixer import music
@@ -37,4 +37,3 @@ class Play(Screen):
     def ctrl_vol(self , slider , value):
         volume = float(value)/100
         music.set_volume(volume)
-"""
