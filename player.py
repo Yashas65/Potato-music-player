@@ -1,4 +1,4 @@
-"""
+
 from pathlib import Path
 
 
@@ -29,4 +29,3 @@ class Player(Screen):
                 )
                 scrollable_frame.add_widget(btn)
 
-"""
