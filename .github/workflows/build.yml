@@ -41,13 +41,20 @@ jobs:
           yes | $HOME/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
       - name: Build APK
-        run: yes | buildozer -v android debug || true --log-level=2
+        run: |
+          yes | buildozer -v android debug
 
-      - name: List build output
-        run: ls -R .
+      - name: Show build outputs
+        run: |
+          ls -R bin || true
+          ls -R .buildozer/android/platform/build-arm64-v8a/dists || true
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Potato-APK
-          path: bin/*.apk
+          path: |
+            bin/*.apk
+            .buildozer/android/platform/build-arm64-v8a/dists/**/bin/*.apk
+
+     
