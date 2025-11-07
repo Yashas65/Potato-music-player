@@ -1,7 +1,5 @@
-
 from kivy.uix.screenmanager import Screen
 import time
-#from kivy.core.audio import SoundLoader
 from threading import Thread    
 from kivy.clock import Clock   
 from ffpyplayer.player import MediaPlayer
@@ -20,12 +18,10 @@ class Play(Screen):
                 if val == 'eof':
                     break
 
-                #Clock.schedule_once(lambda dt: self.update_ui(), 0)
             
         Thread(target=in_thread , daemon=True).start()
 
     def pause(self):
-        #if self.player:
         try:
             print('pause working')
             player.set_pause(True)
@@ -33,7 +29,6 @@ class Play(Screen):
         except Exception as e:
             print('Error pausing:', e)
     def resume(self):
-        #if self.player:
         try:
             player.set_pause(False)
             self.playing = True
