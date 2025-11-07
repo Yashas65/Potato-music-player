@@ -5,7 +5,7 @@ from kivy.uix.button import Button
 from a_musc import Add_Music
 from player import Player
 from play import Play
-import pygame
+
 
 Builder.load_file('a_musc.kv')
 Builder.load_file('player.kv')
@@ -15,14 +15,13 @@ class Home(Screen):
     pass
 
 
-class Potato(App):
+class main(App):
     def build(self):
-        pygame.mixer.init()
-
+        
         sm = ScreenManager()
         sm.add_widget(Home(name='home'))
         sm.add_widget(Add_Music(name='add_music'))
         sm.add_widget(Player(name='player'))
         sm.add_widget(Play(name='play'))
         return sm
-Potato().run()
+main().run()

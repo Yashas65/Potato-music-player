@@ -38,13 +38,10 @@
                 orientation:'vertical'
 
                 Button:
+                    id: toggle
                     text:'||'
                     on_press:
-                        root.pause()
-                Button:
-                    text:'|>'
-                    on_press:
-                        root.resume()
+                        root.toggle()
             Button:
                 text:'>'
 

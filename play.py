@@ -21,16 +21,24 @@ class Play(Screen):
             
         Thread(target=in_thread , daemon=True).start()
 
-    def pause(self):
-        try:
-            print('pause working')
-            player.set_pause(True)
-            self.playing = False
-        except Exception as e:
-            print('Error pausing:', e)
-    def resume(self):
-        try:
-            player.set_pause(False)
-            self.playing = True
-        except Exception as e:
-            print('Error resuming:', e)
+    def toggle(self):
+        
+        button  = self.ids.toggle #id of the toggle btn
+
+        #pauseing , means self.playing is true
+        if self.playing:
+            try:
+                player.set_pause(True)
+                self.playing = False
+                button.text = '|>'
+            except Exception as e:
+                print('Error pausing:', e)
+    
+        else:
+            try:
+                player.set_pause(False)
+                self.playing = True
+                button.text = '||'
+
+            except Exception as e:
+                print('Error resuming:', e)
