@@ -1,39 +1,44 @@
 
 from kivy.uix.screenmanager import Screen
 import time
-from pygame.mixer import music
-
-
-def updt_status(self , dis):
-    self.ids.sttus = f'{dis}'
-    time.sleep(0.3)
-    self.ids.sttus = ''
-    print(dis)
+#from kivy.core.audio import SoundLoader
+from threading import Thread    
+from kivy.clock import Clock   
+from ffpyplayer.player import MediaPlayer
 
 class Play(Screen):
+    player = None
+    playing = False
 
+    def play (self,source):
+        def in_thread():
+            self.player = MediaPlayer(source)
+            self.playing = True
+            while self.playing:
+                frame, val = self.player.get_frame()
+                if val == 'eof':
+                    break
 
-    def load(self):#load and play
-        music.load(self)
-        music.set_volume(1.0)
-        music.play()
-
-    def restart(self):
-        music.play()
-        
-    def play(self):
-        try:
-            music.unpause()
-            updt_status(self ,'|>')
-        except Exception as e:
-            updt_status(self , e)
+                #Clock.schedule_once(lambda dt: self.update_ui(), 0)
+            
+        Thread(target=in_thread , daemon=True).start()
 
     def pause(self):
-        music.pause()
-        updt_status(self , '||')
+        if self.player:
+            self.player.set_pause(True)
+            self.playing = False
 
+    def resume(self):
+        if self.player:
+            self.player.set_pause(False)
+            self.playing = True
+            def in_thread():
+                while self.playing:
+                    frame, val = self.player.get_frame()
+                    if val == 'eof':
+                        break
 
+                    #Clock.schedule_once(lambda dt: self.update_ui(), 0)
+                
+            Thread(target=in_thread , daemon=True).start()
 
-    def ctrl_vol(self , slider , value):
-        volume = float(value)/100
-        music.set_volume(volume)
