@@ -7,15 +7,16 @@ from kivy.clock import Clock
 from ffpyplayer.player import MediaPlayer
 
 class Play(Screen):
-    player = None
+    
     playing = False
 
     def play (self,source):
         def in_thread():
-            self.player = MediaPlayer(source)
+            global player
+            player = MediaPlayer(source)
             self.playing = True
             while self.playing:
-                frame, val = self.player.get_frame()
+                frame, val = player.get_frame()
                 if val == 'eof':
                     break
 
@@ -24,21 +25,17 @@ class Play(Screen):
         Thread(target=in_thread , daemon=True).start()
 
     def pause(self):
-        if self.player:
-            self.player.set_pause(True)
+        #if self.player:
+        try:
+            print('pause working')
+            player.set_pause(True)
             self.playing = False
-
+        except Exception as e:
+            print('Error pausing:', e)
     def resume(self):
-        if self.player:
-            self.player.set_pause(False)
+        #if self.player:
+        try:
+            player.set_pause(False)
             self.playing = True
-            def in_thread():
-                while self.playing:
-                    frame, val = self.player.get_frame()
-                    if val == 'eof':
-                        break
-
-                    #Clock.schedule_once(lambda dt: self.update_ui(), 0)
-                
-            Thread(target=in_thread , daemon=True).start()
-
+        except Exception as e:
+            print('Error resuming:', e)
