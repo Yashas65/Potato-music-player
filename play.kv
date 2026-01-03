@@ -1,56 +1,29 @@
 <Play>
     name: 'play'
     BoxLayout:
-        orientation:'vertical'
-        padding: 10
-        BoxLayout:
-            orientation:'horizontal'
-
-            Button:
-                text: '<'
-                on_press:
-                    root.manager.current = 'player'
-                size_hint_x: 0.3
-                size_hint_y: None
-                height: 30
-            Label:
-                text:'CONTROLS'
-                size_hint_x: 0.7
-                size_hint_y: None
-                height: 30
-        
-        Widget:
+        orientation: 'vertical'
         Label:
-            text:''
-            id : 'sttus'
-            halign : 'center'
-            size_hint_y: None
+            text: 'songs'
+            size_hint_y : .1
+            size_hint_x: None
             height : 50
-        Widget:
-        BoxLayout:
-            orientation:'horizontal'
 
-            Button:
-                text: 'restart'
-                on_press:
-                    root.restart()
-            BoxLayout:
-                orientation:'vertical'
-
-                Button:
-                    id: toggle
-                    text:'||'
-                    on_press:
-                        root.toggle()
-            Button:
-                text:'>'
 
         BoxLayout:
-            orientation : 'vertical'
-            Slider:
-                min : 0
-                max : 100
-                value : 50
-                steps: 5
-                on_value : root.ctrl_vol(self, self.value)
-        Widget:
+            orientation: 'vertical'
+
+            size_hint_y: 
+            size_hint_x: 0.9
+            padding: 10
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                GridLayout:
+                    id: choose_songs
+                    cols: 1
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: 5
+                    padding: 5
+
+    

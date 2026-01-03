@@ -1,49 +1,75 @@
 <Player>:
     name: 'player'
     BoxLayout:
-        padding : 20
         orientation: 'vertical'
         BoxLayout:
             orientation: 'horizontal'
-            size_hint_y: None
-            height: 10
+            size_hint_y : .03
             Button:
-                text: '<'
-                size_hint_y: None
-                size_hint_x: 0.3
+                text: 'add_music'
+                size_hint_x: .5
+                spacing: 0
+                on_release: root.go_to_add_music()
 
-                height: 50
-                on_press: 
-                    root.manager.current = 'home'    
-            Label:
-                text: 'songs'
-                size_hint_y : None
-                size_hint_x: 0.7
+            Button: 
+                text: 'player'
+                size_hint_x: .5
+                spacing: 0
 
-                height : 50
 
+    
         BoxLayout:
-            orientation: 'vertical'
-            size_hint_y: 0.9
-            size_hint_x: 0.9
+            orientation:'vertical'
             padding: 10
-            ScrollView:
-                do_scroll_x: False
-                do_scroll_y: True
-                GridLayout:
-                    id: choose_songs
-                    cols: 1
-                    size_hint_y: None
-                    height: self.minimum_height
-                    spacing: 5
-                    padding: 5
+            size_hint_y : .8
+            
+            Widget:
+                size_hint_y: .2
+            Label:
+                text:'MUSIC_NAME'
+                id : 'sttus'
+                halign : 'center'
+                size_hint_y: None
+                height : 50
+                font_size: '75px'
+            Widget:
+                size_hint_x: .2
 
-    Button:
-        text:'|>'
-        size_hint_x: 0.9
-        size_hint_y : None
+            BoxLayout:
+                orientation : 'vertical'
+                height: '50px'
+                Slider:
+                    min : 0
+                    max : 100 # to be set as total length of song in sec
+                    value : 0
+                    steps: 1
+                    #on_value : root.ctrl_vol(self, self.value)
 
-        height: 50
-        
-        on_press:
-            root.manager.current = 'play'
+
+                BoxLayout:
+                    orientation:'horizontal'
+                    size_hint_y : 1 
+                    padding: '5px'
+                    Button:
+                        text: 'restart'
+                        on_press:
+                            root.restart()
+                    BoxLayout:
+                        orientation:'vertical'
+
+                        Button:
+                            id: toggle
+                            text:'||'
+                            on_press:
+                                root.toggle()
+                    Button:
+                        text:'>'
+
+            Button:
+                text:'songs'
+                size_hint_x: 1
+                size_hint_y : .1
+
+                on_press:
+                    root.manager.current = 'play'
+

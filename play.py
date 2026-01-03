@@ -5,40 +5,23 @@ from kivy.clock import Clock
 from ffpyplayer.player import MediaPlayer
 
 class Play(Screen):
-    
-    playing = False
-
-    def play (self,source):
-        def in_thread():
-            global player
-            player = MediaPlayer(source)
-            self.playing = True
-            while self.playing:
-                frame, val = player.get_frame()
-                if val == 'eof':
-                    break
-
-            
-        Thread(target=in_thread , daemon=True).start()
-
-    def toggle(self):
-        
-        button  = self.ids.toggle #id of the toggle btn
-
-        #pauseing , means self.playing is true
-        if self.playing:
-            try:
-                player.set_pause(True)
-                self.playing = False
-                button.text = '|>'
-            except Exception as e:
-                print('Error pausing:', e)
-    
-        else:
-            try:
-                player.set_pause(False)
-                self.playing = True
-                button.text = '||'
-
-            except Exception as e:
-                print('Error resuming:', e)
+    def on_enter(self):
+        self.choose_music()
+    def choose_music(self):
+        scrollable_frame = self.ids.choose_songs
+        scrollable_frame.clear_widgets()
+        folder = Path("songs/")
+        if not folder.exists():
+            folder.mkdir()
+        for song in folder.iterdir():
+            if song.is_file():
+                
+                controls = play.Play()
+                btn = Button(
+                    text=song.name,
+                    size_hint_y=None,
+                    height=20,
+                    on_press=lambda x,y=str(song) : controls.play(y) 
+                          
+                )
+                scrollable_frame.add_widget(btn)

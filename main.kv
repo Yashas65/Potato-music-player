@@ -1,4 +1,5 @@
 ScreenManager:
+    id: sm
     Home:
     Player:
     Add_Music:
@@ -11,29 +12,23 @@ ScreenManager:
         Label: 
             text: 'POTATO'
             halign: 'center'
-            height: '50'
+            height: '200'
+            font_size: '100'
 
         Widget:
-
         BoxLayout:
             orientation: 'horizontal'
-            height: 50
-
             Widget:
 
             Button:
-                text: 'add_music'
-                width: 120
-                on_press: 
-                    root.manager.current = 'add_music'
-
-            Button:
-                text: 'player'
-                width: 120
+                text: 'Play'
+                halign: 'center'
                 on_press:
                     root.manager.current = 'player'
-                    
+                font_size: "50px"
             Widget:
+            
+            
         Widget:    
 
 

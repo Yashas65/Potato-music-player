@@ -4,10 +4,15 @@ import os
 from pathlib import Path
 from kivy.clock import Clock
 from threading import Thread
+from kivy.uix.screenmanager import SlideTransition
 
 
 
 class Add_Music(Screen):
+
+    def go_to_player(self):
+        self.manager.transition = SlideTransition(direction = 'left')
+        self.manager.current = 'player'
     def download(self):
 
         url = self.ids.url.text
@@ -42,7 +47,7 @@ class Add_Music(Screen):
                    print("[ERROR]", msg)
 
             ydl_opts = {
-                'format': 'bestaudio[ext=mp3]/bestaudio',
+                'format': 'bestaudio[ext=mp3]/bestaudio', #fake mp3 just the extension
                 'outtmpl': f_path,
                 'quiet': True,
                 'logger': MyLogger()

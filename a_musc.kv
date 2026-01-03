@@ -4,50 +4,72 @@
     
     BoxLayout:
         orientation: 'vertical'
-
+        
         BoxLayout:
-
             orientation: 'horizontal'
-            size_hint_y : 0.2
+            size_hint_y : .03
             Button:
-                text: '<'
-                size_hint_y: None
-                height : 50
-                size_hint_x: 0.1
+                text: 'add_music'
+                size_hint_x: .5
+                spacing: 0
                 on_press:
-                    root.manager.current = 'home'
-            Label:
-                text: ' Add_Music'
-                halign: 'center'
-                size_hint_y: 0.2
-                size_hint_x: 0.9
+                    root.manager.current = 'add_music'
+
+            Button: 
+                text: 'player'
+                size_hint_x: .5
+                spacing: 0
+                on_press:
+                    root.go_to_player()
+
         Widget:
+
+        Label:
+            text: ' Add_Music'
+            halign: 'center'
+            size_hint_x: 0.9
+            size_hint_y: .2
+            font_size: '75px'
+        Widget:
+
         BoxLayout:
             orientation: 'horizontal'
             padding: 10
+            size_hint_y: .4
+
             Label:
-                size_hint_x : 0.3
-                text: ' song url '
-                size_hint_y:0.3
+                size_hint_x : 0.2
+                text: ' song url -->'
+                font_size: '20px'
 
             TextInput:
                 id: url
                 hint_text: 'url'
-                size_hint_x: 0.7
+                size_hint_x: 0.8
                 multiline: False
-                size_hint_y: 0.3
-        Button:
-            text: 'download'
-            halign: 'center'
-            size_hint_x : 0.5
-            size_hint_y : 0.3
-            pos_hint: {'center_x': 0.5}
-            on_press:   root.download()
+                font_size: '20px'
 
         Widget:
+            size_hint_y: .2
+
+        Button:
+            text: 'Download'
+            halign: 'center'
+            size_hint_x : 0.3
+            size_hint_y : None
+            pos_hint: {'center_x': 0.5}
+            on_press:   root.download()
+            font_size: '30px'
+
+            background_normal : ""
+            background_color : .3, .3 , .3 , 1
+
         Widget: 
+            size_hint_y: .2
+
         Label:
             id: status
             text:''
             halign:'center'
+        
             

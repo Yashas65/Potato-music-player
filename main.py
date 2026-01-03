@@ -14,7 +14,6 @@ Builder.load_file('play.kv')
 class Home(Screen):
     pass
 
-
 class main(App):
     def build(self):
         
